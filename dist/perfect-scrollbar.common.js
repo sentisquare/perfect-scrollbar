@@ -1,6 +1,6 @@
 /*!
- * perfect-scrollbar v1.5.6
- * Copyright 2024 Hyunje Jun, MDBootstrap and Contributors
+ * perfect-scrollbar v1.5.7
+ * Copyright 2025 Hyunje Jun, MDBootstrap and Contributors
  * Licensed under MIT
  */
 
@@ -322,8 +322,26 @@ var env = {
 
 /* eslint-disable no-lonely-if */
 
-function updateGeometry(i) {
+function updateGeometry (i) {
   var element = i.element;
+
+  // FIX: https://github.com/mdbootstrap/perfect-scrollbar/issues/51
+  // 1- Reinitialize the maximum scroll height value when items are added dynamically in the container to scroll
+  if ((i.maxScroll !== 0) && (element.scrollTop + element.offsetHeight < element.scrollHeight)) {
+    i.maxScroll = 0;
+  }
+
+  // 2- Set the maximum scroll height value when we reach the last item of the container
+  if ((element.scrollTop + element.offsetHeight >= element.scrollHeight) && i.maxScroll === 0) {
+    i.maxScroll = element.scrollTop;
+  }
+
+  // 3- Stop scrolling down when we reach the last item of the container
+  if ((i.maxScroll !== 0) && (element.scrollTop > i.maxScroll)) {
+    return;
+  }
+  // END FIX
+
   var roundedScrollTop = Math.floor(element.scrollTop);
   var rect = element.getBoundingClientRect();
 
@@ -360,7 +378,7 @@ function updateGeometry(i) {
     i.scrollbarXLeft = toInt(
       ((i.negativeScrollAdjustment + element.scrollLeft) *
         (i.railXWidth - i.scrollbarXWidth)) /
-        (i.contentWidth - i.containerWidth)
+      (i.contentWidth - i.containerWidth)
     );
   } else {
     i.scrollbarXActive = false;
@@ -379,7 +397,7 @@ function updateGeometry(i) {
     );
     i.scrollbarYTop = toInt(
       (roundedScrollTop * (i.railYHeight - i.scrollbarYHeight)) /
-        (i.contentHeight - i.containerHeight)
+      (i.contentHeight - i.containerHeight)
     );
   } else {
     i.scrollbarYActive = false;
@@ -1292,6 +1310,7 @@ var PerfectScrollbar = function PerfectScrollbar(element, userSettings) {
   this.lastScrollTop = Math.floor(element.scrollTop); // for onScroll only
   this.lastScrollLeft = element.scrollLeft; // for onScroll only
   this.event.bind(this.element, 'scroll', function (e) { return this$1.onScroll(e); });
+  this.maxScroll = 0; // FIXes https://github.com/mdbootstrap/perfect-scrollbar/issues/51
   updateGeometry(this);
 };
 

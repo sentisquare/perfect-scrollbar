@@ -160,6 +160,7 @@ export default class PerfectScrollbar {
     this.lastScrollTop = Math.floor(element.scrollTop); // for onScroll only
     this.lastScrollLeft = element.scrollLeft; // for onScroll only
     this.event.bind(this.element, 'scroll', e => this.onScroll(e));
+    this.maxScroll = 0 // FIXes https://github.com/mdbootstrap/perfect-scrollbar/issues/51
     updateGeometry(this);
   }
 

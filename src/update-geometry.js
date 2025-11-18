@@ -5,8 +5,26 @@ import { toInt } from './lib/util';
 
 /* eslint-disable no-lonely-if */
 
-export default function(i) {
+export default function (i) {
   const element = i.element;
+
+  // FIX: https://github.com/mdbootstrap/perfect-scrollbar/issues/51
+  // 1- Reinitialize the maximum scroll height value when items are added dynamically in the container to scroll
+  if ((i.maxScroll !== 0) && (element.scrollTop + element.offsetHeight < element.scrollHeight)) {
+    i.maxScroll = 0;
+  }
+
+  // 2- Set the maximum scroll height value when we reach the last item of the container
+  if ((element.scrollTop + element.offsetHeight >= element.scrollHeight) && i.maxScroll === 0) {
+    i.maxScroll = element.scrollTop;
+  }
+
+  // 3- Stop scrolling down when we reach the last item of the container
+  if ((i.maxScroll !== 0) && (element.scrollTop > i.maxScroll)) {
+    return;
+  }
+  // END FIX
+
   const roundedScrollTop = Math.floor(element.scrollTop);
   const rect = element.getBoundingClientRect();
 
@@ -45,7 +63,7 @@ export default function(i) {
     i.scrollbarXLeft = toInt(
       ((i.negativeScrollAdjustment + element.scrollLeft) *
         (i.railXWidth - i.scrollbarXWidth)) /
-        (i.contentWidth - i.containerWidth)
+      (i.contentWidth - i.containerWidth)
     );
   } else {
     i.scrollbarXActive = false;
@@ -64,7 +82,7 @@ export default function(i) {
     );
     i.scrollbarYTop = toInt(
       (roundedScrollTop * (i.railYHeight - i.scrollbarYHeight)) /
-        (i.contentHeight - i.containerHeight)
+      (i.contentHeight - i.containerHeight)
     );
   } else {
     i.scrollbarYActive = false;

@@ -1,6 +1,6 @@
 <p align="center">
-  <a href="https://perfectscrollbar.com/?utm_source=GitHub&utm_medium=PerfectScrollbar">
-    <img src="https://perfectscrollbar.com/logo2.png" width="300" height="200">
+  <a href="https://piotrgusciora-mdb5-advanced-standard-vite.mdbgo.io/index.html">
+    <img src="https://camo.githubusercontent.com/1d3a8b8048fb035704e7fa7085db0ff86a1a3f53b674be8f1523c9cb807e339f/68747470733a2f2f6d64626f6f7473747261702e636f6d2f696d672f4d61726b6574696e672f67656e6572616c2f6c6f676f2f6d656469756d2f6d64622d722e706e67" width="300" height="200">
   </a>
 </p>
 
@@ -42,6 +42,7 @@ Check out the [Live Preview](https://mdbootstrap.com/snippets/standard/marveluck
 
 ## Related resources
 
+- [Documentation](https://manuals.muthu.co/posts/javascript-libraries-and-functions/perfect-scrollbar.html)
 
 - [Scroll Back To Top](https://mdbootstrap.com/docs/standard/extended/back-to-top/?utm_source=GitHub&utm_medium=PerfectScrollbar)
 

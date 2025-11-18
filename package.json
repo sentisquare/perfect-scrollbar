@@ -1,6 +1,6 @@
 {
-  "name": "perfect-scrollbar",
-  "version": "1.5.6",
+  "name": "@sentisquare/perfect-scrollbar",
+  "version": "1.5.7",
   "description": "Minimalistic but perfect custom scrollbar plugin",
   "author": "Hyunje Jun <me@noraesae.net>",
   "keywords": [
@@ -8,10 +8,10 @@
     "scroll",
     "scrollbar"
   ],
-  "homepage": "https://perfectscrollbar.com/",
+  "homepage": "https://github.com/mdbootstrap/perfect-scrollbar",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mdbootstrap/perfect-scrollbar"
+    "url": "https://github.com/sentisquare/perfect-scrollbar"
   },
   "bugs": {
     "url": "https://github.com/mdbootstrap/perfect-scrollbar/issues"
